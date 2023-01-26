@@ -37,6 +37,7 @@ def deleteLivros(request, id):
     est.delete()
     return redirect("") 
 
+#LOGIN
 def login(request):
     if request.method =="GET":
         return render(request, 'login.html')
@@ -51,7 +52,21 @@ def login(request):
             return redirect("/livrospretendidos")
         else:
             return HttpResponse("Usuário ou senha invalidos")
-
+#CADASTRO
+def cadastro(request):
+    if request.method =="GET":
+        return render(request, 'cadastro-usuario.html')
+    else:
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        
+        user1 = User.objects.filter(username=username).first()
+        if user1:
+            return HttpResponse("Ja existe um usuário com esse nome")
+        user = User.objects.create_user(username=username, email=email, password=senha)
+        user.save()    
+        return HttpResponse("Cadastrado")
 
 
 def listalivrospretendidos(request):
