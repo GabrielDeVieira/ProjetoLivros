@@ -113,14 +113,20 @@
 
                                         </thead>
                                         <tbody>
+                                            {% for livp in livroslidos %}
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{ livp.liv_codigo }}</td>
+                                                <td>{{ livp.liv_nome }}</td>
+                                                <td>{{ livp.liv_numerodepaginas }}</td>
+                                                <td>{{ livp.liv_dataleitura }}</td>
+                                                <td>{{ livp.liv_autor }}</td>
+                                                <td>{{ livp.liv_avaliacao }}</td>
+                                                <td class=""><a href="{% url 'url_update' livp.liv_codigo %}"> <button >editar</button></a>   
+                                                </td>
+                                                <td class=""><a href="{% url 'url_delete' livp.liv_codigo %}"> <button >deletar</button></a>   
+                                                </td>
                                             </tr>
+                                            {% endfor %}
                                            
                                         </tbody>
                                     </table>
